@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bliss on Wheels - Mobile Spa</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins&display=swap">
+  <style>
+    :root {
+      --mint: #BFE3CE;
+      --peach: #FCD3CC;
+      --bg: linear-gradient(135deg, #FCD3CC 0%, #BFE3CE 100%);
+      --dark: #1f2e2e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: url('./A_digital_illustration_promotes_"Bliss_on_Wheels,".png') center/cover no-repeat;
+      color: #fff;
+      backdrop-filter: blur(8px);
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 15px #00000070;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-btn {
+      background: var(--mint);
+      color: #111;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .cta-btn:hover {
+      background: #a9d1bd;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background-color: #ffffffbb;
+      backdrop-filter: blur(10px);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav a {
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    section h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--dark);
+    }
+
+    .gallery img {
+      width: 100%;
+      max-width: 400px;
+      margin: 1rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px #00000020;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .reviews blockquote {
+      background: #ffffffcc;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-left: 5px solid var(--peach);
+      font-style: italic;
+      border-radius: 10px;
+    }
+
+    .contact p {
+      text-align: center;
+      margin: 0.5rem 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #fff;
+      color: #777;
+    }
+
+    /* Zen Game Styling */
+    .zen-game {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    #zenBtn {
+      background: var(--peach);
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    #zenBtn:hover {
+      background: #fbb1aa;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Welcome to Bliss on Wheels</h1>
+    <p>South Africa's Spiritual Mobile Spa Experience</p>
+    <a href="https://take.app/blissonwheels" class="cta-btn">Book Services / Shop Products</a>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+    <a href="#zen">Zen Game</a>
+  </nav>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>Bliss on Wheels is a mobile spa bringing tranquility to your doorstep. We blend holistic therapy and luxury treatments, offering a spiritual retreat wherever you are in South Africa. Our mission is to help you relax, heal, and glow from within — guided by peace, presence, and nature’s rhythm.</p>
+  </section>
+
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery" style="display: flex; flex-wrap: wrap; justify-content: center;">
+      <img src="https://source.unsplash.com/400x300/?spa,massage" alt="Spa Image 1" />
+      <img src="https://source.unsplash.com/400x300/?relaxation" alt="Spa Image 2" />
+      <img src="https://source.unsplash.com/400x300/?essential-oils" alt="Spa Image 3" />
+      <img src="https://source.unsplash.com/400x300/?meditation,zen" alt="Spa Image 4" />
+    </div>
+  </section>
+
+  <section id="reviews">
+    <h2>What Our Clients Say</h2>
+    <div class="reviews">
+      <blockquote>“Absolutely magical. The treatments were amazing and I felt like I was floating!” – Nomsa D.</blockquote>
+      <blockquote>“Professional, peaceful, and perfect. My go-to spa experience now.” – Thabo M.</blockquote>
+      <blockquote>“Loved the spiritual vibe. It’s more than a spa — it’s healing.” – Lerato K.</blockquote>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <div class="contact">
+      <p>Email: <a href="mailto:hello@blissonwheels.co.za">hello@blissonwheels.co.za</a></p>
+      <p>Phone: +27 71 234 5678</p>
+      <p>Instagram: <a href="https://instagram.com/blissonwheels">@blissonwheels</a></p>
+    </div>
+  </section>
+
+  <section id="zen">
+    <h2>Zen Click Game</h2>
+    <div class="zen-game">
+      <p>Tap the button to build your inner peace 🌸</p>
+      <h3 id="zenScore">Zen Level: 0</h3>
+      <button id="zenBtn">Feel Bliss</button>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Bliss on Wheels. All Rights Reserved.
+  </footer>
+
+  <script>
+    // Zen game logic
+    let zenLevel = 0;
+    document.getElementById('zenBtn').onclick = () => {
+      zenLevel++;
+      document.getElementById('zenScore').textContent = `Zen Level: ${zenLevel}`;
+    };
+  </script>
+
+</body>
+</html>
