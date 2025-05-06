@@ -12,13 +12,7 @@
       --bg: linear-gradient(135deg, #FCD3CC 0%, #BFE3CE 100%);
       --dark: #1f2e2e;
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Poppins', sans-serif;
       background: var(--bg);
@@ -26,26 +20,42 @@
       overflow-x: hidden;
     }
 
+    /* ---------- Animations ---------- */
+    @keyframes bounce { 
+      0%, 100% { transform: translateY(0); } 
+      50% { transform: translateY(-10px); } 
+    }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---------- Header ---------- */
     header {
       text-align: center;
       padding: 4rem 2rem;
       background: url('./A_digital_illustration_promotes_"Bliss_on_Wheels,".png') center/cover no-repeat;
       color: #fff;
       backdrop-filter: blur(8px);
+      animation: fadeInUp 1s ease-out forwards;
     }
-
+    header img.logo {
+      width: 120px;
+      margin-bottom: 1rem;
+      animation: bounce 2s infinite ease-in-out;
+    }
     header h1 {
       font-family: 'Playfair Display', serif;
       font-size: 3rem;
       margin-bottom: 1rem;
       text-shadow: 0 0 15px #00000070;
+      animation: fadeInUp 1.2s ease-out forwards;
     }
-
     header p {
       font-size: 1.2rem;
       margin-bottom: 2rem;
+      animation: fadeInUp 1.4s ease-out forwards;
     }
-
     .cta-btn {
       background: var(--mint);
       color: #111;
@@ -55,13 +65,15 @@
       font-size: 1rem;
       cursor: pointer;
       text-decoration: none;
-      transition: all 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: bounce 3s infinite ease-in-out;
     }
-
     .cta-btn:hover {
-      background: #a9d1bd;
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
 
+    /* ---------- Navigation ---------- */
     nav {
       display: flex;
       justify-content: center;
@@ -72,39 +84,46 @@
       position: sticky;
       top: 0;
       z-index: 100;
+      animation: fadeInUp 1.6s ease-out forwards;
     }
-
     nav a {
       color: #333;
       text-decoration: none;
       font-weight: bold;
+      position: relative;
+      transition: transform 0.2s ease;
+    }
+    nav a:hover {
+      transform: translateY(-5px);
     }
 
     section {
       padding: 4rem 2rem;
       max-width: 1000px;
       margin: auto;
+      animation: fadeInUp 1s ease-out forwards;
     }
-
     section h2 {
       text-align: center;
       margin-bottom: 2rem;
       color: var(--dark);
     }
 
+    /* ---------- Gallery ---------- */
     .gallery img {
       width: 100%;
       max-width: 400px;
       margin: 1rem;
       border-radius: 15px;
       box-shadow: 0 10px 20px #00000020;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
     .gallery img:hover {
-      transform: scale(1.05);
+      transform: scale(1.1);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
     }
 
+    /* ---------- Reviews ---------- */
     .reviews blockquote {
       background: #ffffffcc;
       padding: 1rem;
@@ -114,11 +133,13 @@
       border-radius: 10px;
     }
 
+    /* ---------- Contact ---------- */
     .contact p {
       text-align: center;
       margin: 0.5rem 0;
     }
 
+    /* ---------- Footer ---------- */
     footer {
       text-align: center;
       padding: 2rem;
@@ -126,12 +147,11 @@
       color: #777;
     }
 
-    /* Zen Game Styling */
+    /* ---------- Zen Game ---------- */
     .zen-game {
       text-align: center;
       margin-top: 3rem;
     }
-
     #zenBtn {
       background: var(--peach);
       border: none;
@@ -140,16 +160,20 @@
       font-size: 1.2rem;
       cursor: pointer;
       margin-top: 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: bounce 2.5s infinite ease-in-out;
     }
-
     #zenBtn:hover {
-      background: #fbb1aa;
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
   </style>
 </head>
 <body>
 
   <header>
+    <!-- Logo above the title -->
+    <img src="logo.png" alt="Bliss on Wheels Logo" class="logo">
     <h1>Welcome to Bliss on Wheels</h1>
     <p>South Africa's Spiritual Mobile Spa Experience</p>
     <a href="https://take.app/blissonwheels" class="cta-btn">Book Services / Shop Products</a>
@@ -196,8 +220,6 @@
     </div>
   </section>
 
-  <!-- … above sections … -->
-
   <section id="zen">
     <h2>Zen Click Game</h2>
     <div class="zen-game">
@@ -218,34 +240,23 @@
     </div>
   </section>
 
+  <footer>
+    &copy; 2025 Bliss on Wheels. All Rights Reserved.
+  </footer>
+
   <script>
-    // 1) Generate 500 blissful messages programmatically
+    // Generate 500 blissful messages
     const fragments = [
-      "May your heart be light",
-      "May your spirit shine",
-      "May peace flow through you",
-      "May joy ripple in your soul",
-      "May calmness cradle your mind",
-      "May clarity guide your thoughts",
-      "May love surround your aura",
-      "May healing warmth embrace you",
-      "May balance anchor your being",
+      "May your heart be light","May your spirit shine","May peace flow through you",
+      "May joy ripple in your soul","May calmness cradle your mind","May clarity guide your thoughts",
+      "May love surround your aura","May healing warmth embrace you","May balance anchor your being",
       "May gratitude fill your day"
     ];
     const endings = [
-      "like a gentle breeze.",
-      "like morning sunbeams.",
-      "like ripples on a still lake.",
-      "like petals dancing in wind.",
-      "like moonlight on water.",
-      "like starlight in your eyes.",
-      "like whispered prayers.",
-      "like a soft lullaby.",
-      "like a golden glow.",
-      "like a blossom in bloom."
+      "like a gentle breeze.","like morning sunbeams.","like ripples on a still lake.",
+      "like petals dancing in wind.","like moonlight on water.","like starlight in your eyes.",
+      "like whispered prayers.","like a soft lullaby.","like a golden glow.","like a blossom in bloom."
     ];
-
-    // combine to get 100 fragments × 10 endings = 1000; slice to 500
     let blissMessages = [];
     for (let f of fragments) {
       for (let e of endings) {
@@ -255,21 +266,17 @@
       if (blissMessages.length >= 500) break;
     }
 
-    // 2) Game state
+    // Zen game logic
     let zenLevel = 0;
-
-    // 3) On click: increment level, pick a random bliss message, and personalize it
     document.getElementById('zenBtn').addEventListener('click', () => {
       const name = (document.getElementById('userName').value || "Friend").trim();
       zenLevel++;
       document.getElementById('zenScore').textContent = `Zen Level: ${zenLevel}`;
-
-      // Pick a random message
       const msg = blissMessages[Math.floor(Math.random() * blissMessages.length)];
       document.getElementById('blissMsg').textContent = `Hello ${name}, ${msg}`;
     });
   </script>
 
-
 </body>
 </html>
+
