@@ -48,11 +48,28 @@
     
     /* HEADER */
     header {
+      position: relative;            /* enable overlay */
       text-align: center;
       padding: 4rem 2rem;
       background: url('./A_digital_illustration_promotes_"Bliss_on_Wheels,".png?v=1.0.1') center/cover no-repeat;
       color: #fff;
       backdrop-filter: blur(8px);
+      overflow: hidden;
+    }
+    /* NEW OVERLAY BEHIND CONTENT */
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url('header-bg.jpg') center/cover no-repeat;
+      opacity: 0.3;
+      z-index: 0;
+    }
+    /* keep existing content above overlay */
+    header > * {
+      position: relative;
+      z-index: 1;
     }
     .logo { width: 120px; margin-bottom: 1rem; }
     .cta-btn {
@@ -110,6 +127,14 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       backdrop-filter: blur(6px);
+    }
+    /* NEW PACKAGE IMAGE */
+    .package img.package-img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius) var(--radius) 0 0;
+      object-fit: cover;
+      margin-bottom: 1rem;
     }
     .package h3 { margin-bottom: 0.5rem; color: var(--dark); }
     .package p { margin: 1rem 0; }
@@ -216,18 +241,22 @@
     <div class="package-grid">
       <!-- Existing -->
       <div class="package">
+        <!-- NEW image -->
+        <img class="package-img" src="https://source.unsplash.com/300x200/?massage,relaxation" alt="Tranquility Touch">
         <h3>Tranquility Touch</h3>
         <p>60 min Full Body Massage + Essential Oils</p>
         <p><strong>R499</strong></p>
         <button class="book-btn">Book Now</button>
       </div>
       <div class="package">
+        <img class="package-img" src="https://source.unsplash.com/300x200/?facial,glow" alt="Glow & Go Facial">
         <h3>Glow & Go Facial</h3>
         <p>Hydrating Facial + Glow Serum</p>
         <p><strong>R299</strong></p>
         <button class="book-btn">Book Now</button>
       </div>
       <div class="package">
+        <img class="package-img" src="https://source.unsplash.com/300x200/?meditation,zen" alt="Zen Package">
         <h3>Zen Package</h3>
         <p>Meditation Session + Aromatherapy + Reiki</p>
         <p><strong>R599</strong></p>
@@ -235,12 +264,14 @@
       </div>
       <!-- New Packages -->
       <div class="package">
+        <img class="package-img" src="https://source.unsplash.com/300x200/?spa,scrub" alt="Detox Delight">
         <h3>Detox Delight</h3>
         <p>Full-Body Scrub + Clay Wrap</p>
         <p><strong>R549</strong></p>
         <button class="book-btn">Book Now</button>
       </div>
       <div class="package">
+        <img class="package-img" src="https://source.unsplash.com/300x200/?headmassage" alt="Urban Escape">
         <h3>Urban Escape</h3>
         <p>Express Facial + Head Massage</p>
         <p><strong>R349</strong></p>
@@ -387,5 +418,4 @@
     });
   </script>
 </body>
-  </html>
-      
+</html>
