@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -144,51 +144,6 @@
       color: #fff;
     }
 
-    /* POSTS/UPDATES CARDS */
-    .update-card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      backdrop-filter: blur(6px);
-      animation: fadeInUp 0.6s ease-out forwards;
-    }
-    .update-card h3 {
-      margin-bottom: 0.5rem;
-      color: var(--dark);
-      font-size: 1.25rem;
-    }
-    .update-card p {
-      margin-bottom: 0.8rem;
-      line-height: 1.4;
-    }
-    .update-card .tag {
-      display: inline-block;
-      font-size: 0.8rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: 12px;
-      background: var(--mint);
-      color: #fff;
-      margin-right: 0.5rem;
-    }
-    .update-card .price {
-      font-weight: bold;
-    }
-
-    /* SHOP SECTION */
-    #shop {
-      text-align: center;
-    }
-    #shop a.shop-link {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.8rem 1.5rem;
-      background: var(--mint);
-      color: #fff;
-      border-radius: var(--radius);
-    }
-
     /* TIPS CARDS */
     .tips-grid {
       display: grid;
@@ -235,6 +190,16 @@
       color: var(--dark);
     }
 
+    /* SHOP & POSTS */
+    #shop .iframe-container {
+      width: 100%;
+      height: 600px;
+      border:none;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
     /* FOOTER */
     footer {
       text-align: center;
@@ -259,9 +224,8 @@
     <a href="#packages">Packages</a>
     <a href="#beauty">Beauty Tips</a>
     <a href="#lifestyle">Lifestyle Tips</a>
-    <a href="#updates">Updates</a>        <!-- new -->
-    <a href="#shop">Shop</a>              <!-- new -->
     <a href="#reviews">Reviews</a>
+    <a href="#shop">Shop</a>
     <a href="#contact">Contact</a>
   </nav>
 
@@ -354,89 +318,6 @@ Discover the bliss of convenience. Discover the bliss of care. Discover Bliss on
     </div>
   </section>
 
-  <!-- UPDATES -->
-  <section id="updates">
-    <h2>Latest Updates & Offers</h2>
-
-    <div class="update-card">
-      <h3>Swedish Massage + Aromatherapy</h3>
-      <span class="tag">popular</span>
-      <p>Reserved Per Person – <span class="price">R 730,00</span>  |  <span class="price">R 900,00</span></p>
-    </div>
-
-    <div class="update-card">
-      <h3>Aromatherapy + Hot Stones</h3>
-      <span class="tag">popular</span>
-      <p>Per Person – <span class="price">R 730,00</span>  |  <span class="price">R 900,00</span></p>
-    </div>
-
-    <div class="update-card">
-      <h3>Hot Stones + Deep Tissue</h3>
-      <span class="tag">popular</span>
-      <p>Per Person – <span class="price">R 730,00</span>  |  <span class="price">R 900,00</span></p>
-    </div>
-
-    <div class="update-card">
-      <h3>Deep Tissue + Facials</h3>
-      <span class="tag">popular</span>
-      <p>Reserved Per Person – <span class="price">R 730,00</span>  |  <span class="price">R 900,00</span></p>
-    </div>
-
-    <div class="update-card">
-      <h3>Gel Mani &amp; Pedi</h3>
-      <span class="tag">new</span>
-      <p>Per Person – <span class="price">R 700,00</span>  |  <span class="price">R 800,00</span></p>
-    </div>
-
-    <div class="update-card">
-      <h3>Mani Gelish</h3>
-      <span class="tag">new</span>
-      <p>Per Person – <span class="price">R 350,00</span>  |  <span class="price">R 450,00</span></p>
-    </div>
-
-    <div class="update-card">
-      <h3>Men's Mani &amp; Pedi</h3>
-      <p>Per Person – <span class="price">R 450,00</span>  |  <span class="price">R 600,00</span></p>
-    </div>
-
-    <div class="update-card">
-      <h3>Pedi Gelish</h3>
-      <p>Per Person – <span class="price">R 400,00</span>  |  <span class="price">R 500,00</span></p>
-    </div>
-
-    <div class="update-card">
-      <h3>Pedicure</h3>
-      <span class="tag">new</span>
-      <p>Per Person – <span class="price">R 280,00</span>  |  <span class="price">R 350,00</span></p>
-    </div>
-
-    <div class="update-card">
-      <h3>Manicure</h3>
-      <span class="tag">new</span>
-      <p>Per Person – <span class="price">R 150,00</span>  |  <span class="price">R 280,00</span></p>
-    </div>
-
-    <div class="update-card">
-      <h3>Gelish</h3>
-      <span class="tag">new</span>
-      <p>Per Person – <span class="price">R 200,00</span>  |  <span class="price">R 280,00</span></p>
-    </div>
-
-    <div class="update-card">
-      <h3>Gel Soak Off</h3>
-      <p>Per Person – <span class="price">R 70,00</span>  |  <span class="price">R 100,00</span></p>
-    </div>
-  </section>
-
-  <!-- SHOP -->
-  <section id="shop">
-    <h2>Shop Our Products</h2>
-    <p>Click below to browse and purchase our curated spa products:</p>
-    <a href="https://take.app/blissonwheels/c/cm9mbrir90000l804lkin81ku" class="shop-link" target="_blank">
-      Browse &amp; Shop Products
-    </a>
-  </section>
-
   <!-- CUSTOMER REVIEWS -->
   <section id="reviews">
     <h2>Customer Reviews</h2>
@@ -451,6 +332,28 @@ Discover the bliss of convenience. Discover the bliss of care. Discover Bliss on
     <button class="review-btn" onclick="window.open('https://g.page/r/CRdq7nCLASM6EAI/review','_blank')">
       Leave Us A Review
     </button>
+  </section> 
+
+  <!-- LATEST POSTS & SHOP -->
+  <section id="shop">
+    <h2>New from Bliss on Wheels</h2>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <img src="https://source.unsplash.com/60x60/?essential-oil" alt="Product">
+        <p><strong>Now Available:</strong> Explore our spa essentials & wellness products now in our store.</p>
+      </div>
+      <div class="tip-card">
+        <img src="https://source.unsplash.com/60x60/?spa,care" alt="Product Tip">
+        <p><strong>Stay Radiant:</strong> Browse skin and body care products chosen by our mobile spa experts.</p>
+      </div>
+      <div class="tip-card">
+        <img src="https://source.unsplash.com/60x60/?candle" alt="Candle">
+        <p><strong>New Scents:</strong> Aromatherapy candles & calming essentials for your space. Shop now!</p>
+      </div>
+    </div>
+    <div class="iframe-container">
+      <iframe src="https://take.app/blissonwheels/c/cm9mbrir90000l804lkin81ku" width="100%" height="100%" frameborder="0"></iframe>
+    </div>
   </section>
 
   <!-- CONTACT -->
@@ -520,10 +423,10 @@ Discover the bliss of convenience. Discover the bliss of care. Discover Bliss on
         container.innerHTML = '';
         tips.forEach(t => {
           const card = document.createElement('div'); card.className='tip-card';
-          card.innerHTML = \`
+          card.innerHTML = `
             <img src="https://source.unsplash.com/60x60/?skincare" alt="beauty">
-            <p>\${t.tip}</p>
-          \`;
+            <p>${t.tip}</p>
+          `;
           container.appendChild(card);
         });
       } catch {
@@ -540,10 +443,10 @@ Discover the bliss of convenience. Discover the bliss of care. Discover Bliss on
           const res = await fetch('https://api.adviceslip.com/advice');
           const slip = await res.json();
           const card = document.createElement('div'); card.className='tip-card';
-          card.innerHTML = \`
+          card.innerHTML = `
             <img src="https://source.unsplash.com/60x60/?wellness" alt="lifestyle">
-            <p>\${slip.slip.advice}</p>
-          \`;
+            <p>${slip.slip.advice}</p>
+          `;
           container.appendChild(card);
         } catch {
           container.innerHTML = '<p>Unable to load lifestyle tips.</p>';
