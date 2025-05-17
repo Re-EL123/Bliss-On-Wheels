@@ -22,6 +22,10 @@
       --section-padding-horizontal: 3rem;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+      overscroll-behavior-y: contain;
+    }
     body {
       font-family: 'Poppins', sans-serif;
       background: var(--bg-gradient);
@@ -29,6 +33,7 @@
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
       padding: 2rem 0;
+      -webkit-overflow-scrolling: touch;
     }
     h1,h2,h3 { font-family: 'Playfair Display', serif; margin-bottom: 1rem; }
     a { color: var(--dark); text-decoration: none; }
@@ -36,8 +41,10 @@
       font-weight: bold;
       border: none; cursor: pointer;
       border-radius: var(--radius);
-      transition: transform 0.2s, background 0.2s;
+      transition: transform 0.3s cubic-bezier(.68,-0.55,.27,1.55);
+      touch-action: manipulation;
     }
+    button:active, .cta-btn:active { transform: scale(0.9); }
     button:hover, .cta-btn:hover { transform: scale(1.05); }
 
     header, section, footer {
@@ -48,29 +55,33 @@
     @keyframes fadeInUp {
       to { opacity: 1; transform: translateY(0); }
     }
-    
+    @keyframes bounceIn {
+      0% { transform: translateY(-100%); }
+      60% { transform: translateY(10%); }
+      100% { transform: translateY(0); }
+    }
+
     /* HEADER */
     header {
       position: relative;
       text-align: center;
       padding: 6rem 3rem;
-      background: url('./A_digital_illustration_promotes_"Bliss_on_Wheels,".png?v=1.0.1') center/cover no-repeat;
+      background: url('assets/header-illustration.png') center/cover no-repeat;
       color: #fff;
       backdrop-filter: blur(8px);
       overflow: hidden;
       margin-bottom: 2rem;
     }
-    /* NEW OVERLAY BEHIND CONTENT */
     header::before {
       content: "";
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: url('header-bg.jpg') center/cover no-repeat;
+      background: url('assets/header-bg.jpg') center/cover no-repeat;
       opacity: 0.3;
       z-index: 0;
     }
-    header > * { position: relative; z-index: 1; }
+    header > * { position: relative; z-index: 1; animation: bounceIn 1s ease-out; }
     .logo { width: 140px; margin-bottom: 2rem; }
     .cta-btn { display: inline-block; background: var(--peach); padding: 1rem 2rem; color: var(--dark); }
     
@@ -88,7 +99,8 @@
       border-bottom: 1px solid #eee;
       margin-bottom: 2rem;
     }
-    nav a { font-weight: 600; padding: 0.5rem 1rem; }
+    nav a { font-weight: 600; padding: 0.5rem 1rem; transition: transform 0.3s cubic-bezier(.68,-0.55,.27,1.55); }
+    nav a:active { transform: scale(0.9); }
 
     /* SECTIONS */
     section {
@@ -109,6 +121,7 @@
       box-shadow: var(--shadow);
       width: calc(50% - 1.5rem);
       margin-bottom: 1.5rem;
+      animation: bounceIn 0.8s ease-out;
     }
 
     /* PACKAGE GRID */
@@ -124,6 +137,7 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       backdrop-filter: blur(6px);
+      animation: bounceIn 0.8s ease-out;
     }
     .package img.package-img { margin-bottom: 1.5rem; }
     .package h3 { margin-bottom: 1rem; }
@@ -146,7 +160,7 @@
       gap: 1rem;
       align-items: flex-start;
       backdrop-filter: blur(6px);
-      animation: fadeInUp 0.6s ease-out forwards;
+      animation: bounceIn 0.6s ease-out;
     }
     .tip-card img { width: 60px; height: 60px; }
     .tip-card p { font-size: 1rem; line-height: 1.5; }
@@ -162,6 +176,7 @@
       padding: 2rem;
       margin-bottom: 2rem;
       backdrop-filter: blur(6px);
+      animation: bounceIn 0.8s ease-out;
     }
     #reviews .review-btn { background: var(--peach); padding: 1rem 2rem; }
 
@@ -175,13 +190,14 @@
       text-align: center;
       padding: 3rem 0;
       font-size: 1rem;
+      animation: bounceIn 0.8s ease-out;
     }
   </style>
 </head>
 <body>
   <!-- HEADER -->
   <header>
-    <img src="logo.png?v=1.0.1" alt="Bliss on Wheels Logo" class="logo">
+    <img src="assets/logo.png" alt="Bliss on Wheels Logo" class="logo">
     <h1>Welcome to Bliss on Wheels</h1>
     <p>South Africa's Spiritual Mobile Spa Experience</p>
     <a href="https://take.app/blissonwheels" class="cta-btn">Book Services / Shop Products</a>
@@ -219,10 +235,10 @@ Discover the bliss of convenience. Discover the bliss of care. Discover Bliss on
   <section id="gallery">
     <h2>Gallery</h2>
     <div class="gallery">
-      <img src="https://source.unsplash.com/400x300/?spa" alt="Spa 1">
-      <img src="https://source.unsplash.com/400x300/?massage" alt="Massage">
-      <img src="https://source.unsplash.com/400x300/?facial" alt="Facial">
-      <img src="https://source.unsplash.com/400x300/?zen" alt="Zen">
+      <img src="assets/spa1.jpg" alt="Spa 1">
+      <img src="assets/massage1.jpg" alt="Massage">
+      <img src="assets/facial1.jpg" alt="Facial">
+      <img src="assets/zen1.jpg" alt="Zen">
     </div>
   </section>
 
@@ -232,21 +248,21 @@ Discover the bliss of convenience. Discover the bliss of care. Discover Bliss on
     <div class="package-grid">
       <!-- Existing -->
       <div class="package">
-        <img class="package-img" src="https://source.unsplash.com/300x200/?massage,relaxation" alt="Tranquility Touch">
+        <img class="package-img" src="assets/tranquility-touch.jpg" alt="Tranquility Touch">
         <h3>Tranquility Touch</h3>
         <p>60 min Full Body Massage + Essential Oils</p>
         <p><strong>from R499</strong></p>
         <button class="book-btn">Book Now</button>
       </div>
       <div class="package">
-        <img class="package-img" src="https://source.unsplash.com/300x200/?facial,glow" alt="Glow & Go Facial">
+        <img class="package-img" src="assets/glow-go-facial.jpg" alt="Glow & Go Facial">
         <h3>Glow & Go Facial</h3>
         <p>Hydrating Facial + Glow Serum</p>
         <p><strong>from R299</strong></p>
         <button class="book-btn">Book Now</button>
       </div>
       <div class="package">
-        <img class="package-img" src="https://source.unsplash.com/300x200/?meditation,zen" alt="Zen Package">
+        <img class="package-img" src="assets/zen-package.jpg" alt="Zen Package">
         <h3>Zen Package</h3>
         <p>Meditation Session + Aromatherapy + Reiki</p>
         <p><strong>from R599</strong></p>
@@ -254,14 +270,14 @@ Discover the bliss of convenience. Discover the bliss of care. Discover Bliss on
       </div>
       <!-- New Packages -->
       <div class="package">
-        <img class="package-img" src="https://source.unsplash.com/300x200/?spa,scrub" alt="Detox Delight">
+        <img class="package-img" src="assets/detox-delight.jpg" alt="Detox Delight">
         <h3>Detox Delight</h3>
         <p>Full-Body Scrub + Clay Wrap</p>
         <p><strong>from R549</strong></p>
         <button class="book-btn">Book Now</button>
       </div>
       <div class="package">
-        <img class="package-img" src="https://source.unsplash.com/300x200/?headmassage" alt="Urban Escape">
+        <img class="package-img" src="assets/urban-escape.jpg" alt="Urban Escape">
         <h3>Urban Escape</h3>
         <p>Express Facial + Head Massage</p>
         <p><strong>from R349</strong></p>
@@ -280,7 +296,7 @@ Discover the bliss of convenience. Discover the bliss of care. Discover Bliss on
 
   <!-- LIFESTYLE TIPS -->
   <section id="lifestyle">
-    <h2>Lifestyle & Wellness Tips</h2>
+    <h2>Lifecycle & Wellness Tips</h2>
     <div class="tips-grid" id="lifeTips">
       <p>Loading lifestyle tips...</p>
     </div>
@@ -307,15 +323,15 @@ Discover the bliss of convenience. Discover the bliss of care. Discover Bliss on
     <h2>New from Bliss on Wheels</h2>
     <div class="tips-grid">
       <div class="tip-card">
-        <img src="https://source.unsplash.com/60x60/?essential-oil" alt="Product">
+        <img src="assets/essential-oil.png" alt="Product">
         <p><strong>Now Available:</strong> Explore our spa essentials & wellness products now in our store.</p>
       </div>
       <div class="tip-card">
-        <img src="https://source.unsplash.com/60x60/?spa,care" alt="Product Tip">
+        <img src="assets/spa-care.png" alt="Product Tip">
         <p><strong>Stay Radiant:</strong> Browse skin and body care products chosen by our mobile spa experts.</p>
       </div>
       <div class="tip-card">
-        <img src="https://source.unsplash.com/60x60/?candle" alt="Candle">
+        <img src="assets/candle.png" alt="Candle">
         <p><strong>New Scents:</strong> Aromatherapy candles & calming essentials for your space. Shop now!</p>
       </div>
     </div>
@@ -348,10 +364,10 @@ Discover the bliss of convenience. Discover the bliss of care. Discover Bliss on
       "background_color": "#FCD3CC",
       "theme_color": "#BFE3CE",
       "icons": [
-        {"src":"logo192.png","sizes":"192x192","type":"image/png"},
-        {"src":"logo512.png","sizes":"512x512","type":"image/png"}
+        {"src":"assets/logo192.png","sizes":"192x192","type":"image/png"},
+        {"src":"assets/logo512.png","sizes":"512x512","type":"image/png"}
       ]
-    }; 
+    };
     const mfBlob = new Blob([JSON.stringify(manifest)], {type:'application/json'});
     const mfURL = URL.createObjectURL(mfBlob);
     const link = document.createElement('link');
@@ -365,7 +381,7 @@ Discover the bliss of convenience. Discover the bliss of care. Discover Bliss on
         self.addEventListener('install', e => {
           e.waitUntil(
             caches.open(CACHE).then(c => c.addAll([
-              '/index.html','/logo.png'
+              '/index.html','/assets/logo.png'
             ]))
           );
         });
@@ -380,7 +396,7 @@ Discover the bliss of convenience. Discover the bliss of care. Discover Bliss on
       navigator.serviceWorker.register(swURL);
     }
 
-    // Fetch Beauty Tips from API Ninjas (assuming 'beauty' category exists)
+    // Fetch Beauty Tips from API Ninjas
     async function loadBeauty() {
       const container = document.getElementById('beautyTips');
       try {
@@ -392,7 +408,7 @@ Discover the bliss of convenience. Discover the bliss of care. Discover Bliss on
         tips.forEach(t => {
           const card = document.createElement('div'); card.className='tip-card';
           card.innerHTML = `
-            <img src="https://source.unsplash.com/60x60/?skincare" alt="beauty">
+            <img src="assets/skincare.png" alt="beauty">
             <p>${t.tip}</p>
           `;
           container.appendChild(card);
@@ -402,17 +418,17 @@ Discover the bliss of convenience. Discover the bliss of care. Discover Bliss on
       }
     }
 
-    // Fetch Lifestyle Advice from Advice Slip API
+    // Fetch Lifestyle Advice
     async function loadLifestyle() {
       const container = document.getElementById('lifeTips');
       container.innerHTML = '';
-      for(let i=0;i<4;i++){
+      for (let i = 0; i < 4; i++) {
         try {
           const res = await fetch('https://api.adviceslip.com/advice');
           const slip = await res.json();
-          const card = document.createElement('div'); card.className='tip-card';
+          const card = document.createElement('div'); card.className = 'tip-card';
           card.innerHTML = `
-            <img src="https://source.unsplash.com/60x60/?wellness" alt="lifestyle">
+            <img src="assets/wellness.png" alt="lifestyle">
             <p>${slip.slip.advice}</p>
           `;
           container.appendChild(card);
