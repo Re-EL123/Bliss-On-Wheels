@@ -106,7 +106,7 @@
     section {
       padding: var(--section-padding-vertical) var(--section-padding-horizontal);
       max-width: 1200px;
-      margin: auto 0;
+      margin: 0 auto;
       border-bottom: 1px solid #eee;
     }
     section:not(:first-of-type) { margin-top: 2rem; }
@@ -115,11 +115,15 @@
     /* GALLERY */
     .gallery {
       display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem;
+      max-width: 1200px; margin: 0 auto;
     }
     .gallery img {
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      width: calc(50% - 1.5rem);
+      width: 100%;
+      max-width: calc(50% - 1.5rem);
+      height: auto;
+      object-fit: cover;
       margin-bottom: 1.5rem;
       animation: bounceIn 0.8s ease-out;
     }
@@ -130,6 +134,7 @@
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2.5rem;
       text-align: center;
+      max-width: 1200px; margin: 0 auto;
     }
     .package {
       background: var(--card-bg);
@@ -139,7 +144,12 @@
       backdrop-filter: blur(6px);
       animation: bounceIn 0.8s ease-out;
     }
-    .package img.package-img { margin-bottom: 1.5rem; }
+    .package img.package-img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+    }
     .package h3 { margin-bottom: 1rem; }
     .package p { margin: 1.5rem 0; }
     .book-btn { background: var(--mint); padding: 1rem 2rem; }
@@ -150,6 +160,7 @@
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 2rem;
       margin-top: 2rem;
+      max-width: 1200px; margin: 2rem auto 0;
     }
     .tip-card {
       background: var(--card-bg);
@@ -168,6 +179,7 @@
     /* REVIEWS */
     #reviews {
       padding-bottom: 3rem;
+      max-width: 1200px; margin: 0 auto;
     }
     #reviews .review-card {
       background: var(--card-bg);
@@ -181,15 +193,28 @@
     #reviews .review-btn { background: var(--peach); padding: 1rem 2rem; }
 
     /* SHOP & POSTS */
-    #shop { padding-bottom: 3rem; }
+    #shop {
+      padding-bottom: 3rem;
+      max-width: 1200px; margin: 0 auto;
+    }
     #shop .tips-grid { gap: 2rem; }
     #shop .iframe-container { margin-top: 2rem; min-height: 600px; }
+    .iframe-container iframe {
+      width: 100%;
+      height: 600px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: none;
+    }
 
     /* FOOTER */
     footer {
-      text-align: center;
-      padding: 3rem 0;
+      background: var(--dark);
+      color: #fff;
+      padding: 3rem 1rem;
       font-size: 1rem;
+      text-align: center;
+      border-top: 2px solid var(--mint);
       animation: bounceIn 0.8s ease-out;
     }
   </style>
@@ -339,14 +364,14 @@ Discover the bliss of convenience. Discover the bliss of care. Discover Bliss on
       </div>
     </div>
     <div class="iframe-container">
-      <iframe src="https://take.app/blissonwheels" width="100%" height="100%" frameborder="0"></iframe>
+      <iframe src="https://take.app/blissonwheels" frameborder="0"></iframe>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section id="contact">
     <h2>Contact Us</h2>
-    <p>Email: <a href="mailto: blissonwheels111@gmail.com">hello@blissonwheels.co.za</a></p>
+    <p>Email: <a href="mailto:blissonwheels111@gmail.com">hello@blissonwheels.co.za</a></p>
     <p>Phone: +27 71 234 5678</p>
     <p>Instagram: <a href="https://instagram.com/blissonwheels" target="_blank">@blissonwheels</a></p>
   </section>
@@ -448,4 +473,5 @@ Discover the bliss of convenience. Discover the bliss of care. Discover Bliss on
     });
   </script>
 </body>
-</html>
+        </html>
+  
