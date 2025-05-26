@@ -87,6 +87,16 @@
     section:not(:first-of-type) { margin-top:2rem; }
     section h2 { text-align:center; }
 
+    /* GALLERY */
+    .gallery {
+      display:flex; flex-wrap:wrap; justify-content:center; gap:1.5rem;
+    }
+    .gallery img {
+      width:100%; max-width:calc(50% - 1.5rem);
+      border-radius:var(--radius); box-shadow:var(--shadow);
+      object-fit:cover; animation:bounceIn .8s ease-out;
+    }
+
     /* PACKAGE GRID */
     .package-grid {
       display:grid; gap:2rem;
@@ -101,16 +111,6 @@
     .package img { width:100%; object-fit:cover; margin-bottom:1.5rem; }
     .book-btn { background:var(--mint); padding:1rem 2rem; }
 
-    /* GALLERY */
-    .gallery {
-      display:flex; flex-wrap:wrap; justify-content:center; gap:1.5rem;
-    }
-    .gallery img {
-      width:100%; max-width:calc(50% - 1.5rem);
-      border-radius:var(--radius); box-shadow:var(--shadow);
-      object-fit:cover; animation:bounceIn .8s ease-out;
-    }
-
     /* WELLNESS SLIDESHOW */
     #wellness { text-align:center; }
     .slideshow {
@@ -118,7 +118,9 @@
       background: var(--card-bg); padding:2rem; border-radius:var(--radius);
       backdrop-filter:blur(6px); box-shadow:var(--shadow);
     }
-    .slide { display:none; font-size:1.1rem; line-height:1.6; }
+    .slide {
+      display:none; font-size:1.1rem; line-height:1.6;
+    }
     .slide.active { display:block; }
     .slide-controls {
       margin-top:1.5rem; display:flex; justify-content:center; gap:1rem;
@@ -166,21 +168,27 @@
     .footer-copy { text-align:center; margin-top:2rem; }
 
     /* FLOATING CHAT BUTTON */
-    #chatButton {
+    .chat-button {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: var(--mint);
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 60px;
+      height: 60px;
+      background: var(--peach);
       color: var(--dark);
-      padding: 0.8rem 1.2rem;
-      border-radius: 50px;
+      border-radius: 50%;
       box-shadow: var(--shadow);
-      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
       text-decoration: none;
-      z-index: 9999;
-      transition: background 0.3s ease;
+      z-index: 200;
+      transition: transform .3s;
     }
-    #chatButton:hover { background: var(--peach); }
+    .chat-button:hover {
+      transform: scale(1.1);
+    }
 
     /* RESPONSIVE TWEAKS */
     @media(max-width:600px) {
@@ -219,8 +227,42 @@
   <section id="packages">
     <h2>Featured Spa Packages</h2>
     <div class="package-grid">
-      <!-- existing packages unchanged -->
-      <!-- ... -->
+      <!-- existing package cards (unchanged) -->
+      <div class="package">
+        <img class="package-img" src="assets/tranquility-touch.jpg" alt="Tranquility Touch">
+        <h3>Tranquil Tides</h3>
+        <p>Duration:30 min Back, Neck & Shoulder Massage<br>– 30 min Reflexology<br>– 30 min Balinese/Indian Head Massage</p>
+        <p><strong>R999</strong></p>
+        <button class="book-btn" onclick="window.open('https://take.app/blissonwheels/c/cmaxt5xp20000ie04mbpfrdto','_blank')">Book Now</button>
+      </div>
+      <div class="package">
+        <img class="package-img" src="assets/glow-go-facial.jpg" alt="Glow & Go Facial">
+        <h3>Ember Embrace</h3>
+        <p>Duration: 2 hours<br>• Includes:<br>– 90 min Hot Stone Massage<br>– Foot Scrub & Warm Foot Soak<br>– Hot Stone Foot Massage</p>
+        <p><strong>R1150</strong></p>
+        <button class="book-btn" onclick="window.open('https://take.app/blissonwheels/c/cmaxt5xp20000ie04mbpfrdto','_blank')">Book Now</button>
+      </div>
+      <div class="package">
+        <img class="package-img" src="assets/zen-package.jpg" alt="Zen Package">
+        <h3>Celestial Sanctuary</h3>
+        <p>Duration: 2½ hours<br>• Includes:<br>– 90 min Aromatherapy Full-Body Massage<br>– Full-Body Exfoliation<br>– Express Glow Facial<br>– Add-On: Free Head Massage</p>
+        <p><strong>R1350</strong></p>
+        <button class="book-btn" onclick="window.open('https://take.app/blissonwheels/c/cmaxt5xp20000ie04mbpfrdto','_blank')">Book Now</button>
+      </div>
+      <div class="package">
+        <img class="package-img" src="assets/detox-delight.jpg" alt="Detox Delight">
+        <h3>Glow & Flow</h3>
+        <p>Duration: 90 minutes<br>• Includes:<br>– Classic Facial<br>– 30 min Back, Neck & Shoulder Massage<br>– Add-On: Free Head Massage</p>
+        <p><strong>R850</strong></p>
+        <button class="book-btn" onclick="window.open('https://take.app/blissonwheels/c/cmaxt5xp20000ie04mbpfrdto','_blank')">Book Now</button>
+      </div>
+      <div class="package">
+        <img class="package-img" src="assets/urban-escape.jpg" alt="Urban Escape">
+        <h3>Prestige Pamper</h3>
+        <p>Duration: 2h15min<br>• Includes:<br>– Full Spa Manicure or Pedicure<br>– 40 min Back, Neck & Shoulder Massage<br>– Express Balanced Facial</p>
+        <p><strong>R1340</strong></p>
+        <button class="book-btn" onclick="window.open('https://take.app/blissonwheels/c/cmaxt5xp20000ie04mbpfrdto','_blank')">Book Now</button>
+      </div>
     </div>
     <div style="text-align:center; margin-top:2rem;">
       <a href="https://take.app/blissonwheels" class="cta-btn">View All Spa Products</a>
@@ -251,54 +293,118 @@
     </div>
   </section>
 
-  <!-- REVIEWS -->
+  <!-- CUSTOMER REVIEWS -->
   <section id="reviews">
     <h2>Customer Reviews</h2>
-    <!-- existing reviews unchanged -->
+    <div class="review-card">
+      <p>“Absolutely transformed my day! The mobile spa is a dream.”</p>
+      <p><strong>- Thabo M.</strong></p>
+    </div>
+    <div class="review-card">
+      <p>“Best facial I’ve ever had, right in my driveway.”</p>
+      <p><strong>- Lerato K.</strong></p>
+    </div>
+    <button class="review-btn" onclick="window.open('https://www.google.co.za/search?kgmid=%2Fg%2F11xfrlmcwm&q=Bliss+On+Wheels+Mobile+Spa','_blank')">
+      Leave Us A Review
+    </button>
   </section>
 
   <!-- UPDATES -->
   <section id="shop">
     <h2>Bliss on Wheels Updates</h2>
-    <!-- existing updates unchanged -->
+    <div class="tips-grid">
+      <div class="tip-card">
+        <img src="assets/essential-oil.png" alt="Product">
+        <p><strong>Now Available:</strong> Explore our spa essentials & wellness products now in our store.</p>
+      </div>
+      <div class="tip-card">
+        <img src="assets/spa-care.png" alt="Product Tip">
+        <p><strong>Stay Radiant:</strong> Browse skin and body care products chosen by our mobile spa experts.</p>
+      </div>
+      <div class="tip-card">
+        <img src="assets/candle.png" alt="Candle">
+        <p><strong>New Scents:</strong> Aromatherapy candles & calming essentials for your space.</p>
+      </div>
+    </div>
   </section>
 
   <!-- CONTACT -->
   <section id="contact">
     <h2>Contact Us</h2>
-    <!-- existing contact unchanged -->
+    <p>Email: <a href="mailto:blissonwheelsmobile@protonmail.com">blissonwheelsmobile@protonmail.com</a></p>
+    <p>Phone: Temporarily Unavailable</p>
+    <p>Facebook: <a href="https://www.facebook.com/profile.php?id=61576628000198" target="_blank">@bliss on wheels mobile spa</a></p>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <div class="footer-nav">
-      <!-- existing footer links unchanged -->
+      <div>
+        <h3>Useful Links</h3>
+        <ul>
+          <li><a href="https://take.app/blissonwheels/c/cm9mbrir90000l804lkin81ku">Treatments</a></li>
+          <li><a href="https://take.app/blissonwheels/c/cmaxt5xp20000ie04mbpfrdto">Spa Packages</a></li>
+          <li><a href="https://take.app/blissonwheels/c/cm9mbqil70003l504s7zaduqh">Facials</a></li>
+          <li><a href="https://take.app/blissonwheels/c/cm9mbxlzj0008ju04vrihcz5c">Pedicure</a></li>
+          <li><a href="https://take.app/blissonwheels/c/cmaxw2rzx000glb043mz5t9vq">Waxing</a></li>
+          <li><a href="https://take.app/blissonwheels/c/cm9mc05hx0000kz04dbjblbcw">Nails</a></li>
+          <li><a href="https://take.app/blissonwheels/c/cmaxw4wa40006kv049b7ddrd0">Body Exfoliation</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p>Email: <a href="mailto:blissonwheelsmobile@protonmail.com">blissonwheelsmobile@protonmail.com</a></p>
+        <p>Phone: Temporarily Unavailable</p>
+      </div>
     </div>
     <p class="footer-copy">&copy; 2025 Bliss on Wheels. All rights reserved.</p>
   </footer>
 
   <!-- FLOATING CHAT BUTTON -->
-  <a href="chat.html" id="chatButton">Chat</a>
+  <a href="chat.html" class="chat-button" title="Chat with us">💬</a>
 
-  <!-- PAWA + Service Worker & Slideshow JS -->
+  <!-- PAWA + Service Worker -->
   <script>
-    let posts = [], current = 0;
-    function renderSlide(i){
-      const c = document.getElementById('slideContainer');
-      c.innerHTML = `<div class="slide active"><h3>${posts[i].title}</h3><p>${posts[i].content}</p></div>`;
-    }
-    function nextSlide(){ current = Math.floor(Math.random()*posts.length); renderSlide(current); }
-    function prevSlide(){ current = Math.floor(Math.random()*posts.length); renderSlide(current); }
+    // Simple PWA manifest & SW omitted for brevity (unchanged)
 
-    document.addEventListener('DOMContentLoaded', ()=>{
+    // --- Wellness Slideshow Logic (fetching external JSON) ---
+    let posts = [];
+    let current = 0;
+
+    function renderSlide(idx) {
+      const container = document.getElementById('slideContainer');
+      container.innerHTML = '';
+      const slide = document.createElement('div');
+      slide.className = 'slide active';
+      slide.innerHTML = `<h3>${posts[idx].title}</h3><p>${posts[idx].content}</p>`;
+      container.appendChild(slide);
+    }
+
+    function nextSlide() {
+      current = Math.floor(Math.random() * posts.length);
+      renderSlide(current);
+    }
+    function prevSlide() {
+      current = Math.floor(Math.random() * posts.length);
+      renderSlide(current);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
       fetch('wellness_posts.json')
-        .then(r=>r.json())
-        .then(data=>{
+        .then(res => res.json())
+        .then(data => {
           posts = data;
           renderSlide(0);
-          setInterval(nextSlide,8000);
+          setInterval(nextSlide, 8000);
         })
-        .catch(_=>{
+        .catch(() => {
           document.getElementById('slideContainer').innerHTML =
             '<p>Unable to load wellness posts at this time.</p>';
         });
