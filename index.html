@@ -167,6 +167,29 @@
     .footer-nav a { color:#fff; }
     .footer-copy { text-align:center; margin-top:2rem; }
 
+    /* FLOATING CHAT BUTTON */
+    .chat-button {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 60px;
+      height: 60px;
+      background: var(--peach);
+      color: var(--dark);
+      border-radius: 50%;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      text-decoration: none;
+      z-index: 200;
+      transition: transform .3s;
+    }
+    .chat-button:hover {
+      transform: scale(1.1);
+    }
+
     /* RESPONSIVE TWEAKS */
     @media(max-width:600px) {
       .gallery img { max-width:100%; }
@@ -186,8 +209,8 @@
   <!-- NAVIGATION -->
   <nav>
     <a href="#about">About</a>
-    <a href="#gallery">Gallery</a>
     <a href="#packages">Packages</a>
+    <a href="#gallery">Gallery</a>
     <a href="#wellness">Wellness</a>
     <a href="#reviews">Reviews</a>
     <a href="#shop">Updates</a>
@@ -198,17 +221,6 @@
   <section id="about">
     <h2>About Us</h2>
     <p>Welcome to Bliss on Wheels — your sanctuary of relaxation on the move. Founded with the vision of bringing luxury wellness experiences directly to your doorstep, our mobile spa delivers therapeutic massages, rejuvenating facials, soothing body treatments, and customized pamper sessions in your own space. Self-care isn’t a luxury—it’s a lifestyle. Discover the bliss of care, wherever you are.</p>
-  </section>
-
-  <!-- GALLERY -->
-  <section id="gallery">
-    <h2>Gallery</h2>
-    <div class="gallery">
-      <img src="assets/spa1.jpg" alt="Spa 1">
-      <img src="assets/massage1.jpg" alt="Massage">
-      <img src="assets/facial1.jpg" alt="Facial">
-      <img src="assets/zen1.jpg" alt="Zen">
-    </div>
   </section>
 
   <!-- PACKAGES -->
@@ -257,12 +269,22 @@
     </div>
   </section>
 
+  <!-- GALLERY -->
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="assets/spa1.jpg" alt="Spa 1">
+      <img src="assets/massage1.jpg" alt="Massage">
+      <img src="assets/facial1.jpg" alt="Facial">
+      <img src="assets/zen1.jpg" alt="Zen">
+    </div>
+  </section>
+
   <!-- WELLNESS & HEALING -->
   <section id="wellness">
     <h2>Wellness & Healing</h2>
     <p>Explore the holistic benefits of spa treatments, chakra balancing, mindful breathing, and energy healing to awaken your inner calm and vitality.</p>
     <div class="slideshow">
-      <!-- Slides will be injected by JS -->
       <div id="slideContainer"></div>
       <div class="slide-controls">
         <button onclick="prevSlide()">Prev</button>
@@ -345,11 +367,14 @@
     <p class="footer-copy">&copy; 2025 Bliss on Wheels. All rights reserved.</p>
   </footer>
 
+  <!-- FLOATING CHAT BUTTON -->
+  <a href="chat.html" class="chat-button" title="Chat with us">💬</a>
+
   <!-- PAWA + Service Worker -->
   <script>
     // Simple PWA manifest & SW omitted for brevity (unchanged)
 
-    // --- Wellness Slideshow Logic (now fetching external JSON) ---
+    // --- Wellness Slideshow Logic (fetching external JSON) ---
     let posts = [];
     let current = 0;
 
@@ -380,8 +405,8 @@
           setInterval(nextSlide, 8000);
         })
         .catch(() => {
-          const container = document.getElementById('slideContainer');
-          container.innerHTML = '<p>Unable to load wellness posts at this time.</p>';
+          document.getElementById('slideContainer').innerHTML =
+            '<p>Unable to load wellness posts at this time.</p>';
         });
     });
   </script>
