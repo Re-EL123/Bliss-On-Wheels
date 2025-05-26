@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bliss on Wheels Chat</title>
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins&display=swap">
+  <style>
+    :root {
+      --mint: #BFE3CE;
+      --peach: #FCD3CC;
+      --dark: #1f2e2e;
+      --radius: 16px;
+      --shadow: 0 8px 20px rgba(0,0,0,0.1);
+      --blur-bg: rgba(255,255,255,0.7);
+    }
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--mint);
+      height: 100vh; display: flex; align-items: center; justify-content: center;
+    }
+    .ai-chat-widget {
+      width: 350px; max-height: 600px;
+      background: var(--blur-bg); backdrop-filter: blur(10px);
+      border-radius: var(--radius); box-shadow: var(--shadow);
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    #chat-header {
+      background: var(--peach);
+      padding: 0.75rem; text-align: center;
+      font-weight: bold; color: var(--dark);
+      font-family: 'Playfair Display', serif;
+    }
+    #chat-window {
+      flex: 1; padding: 1rem; overflow-y: auto;
+    }
+    .msg {
+      margin: 0.5rem 0; line-height: 1.4;
+      max-width: 80%;
+      padding: 0.5rem 0.75rem;
+      border-radius: var(--radius);
+    }
+    .msg.bot {
+      background: var(--blur-bg);
+      align-self: flex-start;
+      color: var(--dark);
+    }
+    .msg.user {
+      background: var(--peach);
+      align-self: flex-end;
+      color: var(--dark);
+    }
+    #chat-input-area {
+      display: flex; border-top: 1px solid #eee;
+    }
+    #chat-input {
+      flex: 1; border: none; padding: 0.75rem;
+      font-size: 1rem; outline: none;
+    }
+    #chat-send {
+      background: var(--mint); border: none;
+      padding: 0 1rem; cursor: pointer; font-weight: bold;
+      transition: background .3s;
+    }
+    #chat-send:hover { background: #A8D9BA; }
+
+    /* Scrollbar styling */
+    #chat-window::-webkit-scrollbar { width: 6px; }
+    #chat-window::-webkit-scrollbar-thumb {
+      background: rgba(0,0,0,0.2); border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="ai-chat-widget">
+    <div id="chat-header">Bliss on Wheels Chat</div>
+    <div id="chat-window"></div>
+    <div id="chat-input-area">
+      <input id="chat-input" placeholder="Type your message…" />
+      <button id="chat-send">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const chatWindow = document.getElementById('chat-window');
+    const inputEl = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('chat-send');
+
+    // Define your products & links
+    const products = {
+      1: {
+        name: 'Tranquil Tides',
+        link: 'https://take.app/blissonwheels/c/cmaxt5xp20000ie04mbpfrdto',
+        benefit: 'relieves tension in back, neck & shoulders'
+      },
+      2: {
+        name: 'Ember Embrace',
+        link: 'https://take.app/blissonwheels/c/cmaxt5xp20000ie04mbpfrdto',
+        benefit: 'provides deep warmth and total relaxation'
+      },
+      3: {
+        name: 'Celestial Sanctuary',
+        link: 'https://take.app/blissonwheels/c/cmaxt5xp20000ie04mbpfrdto',
+        benefit: 'aromatherapy and exfoliation for radiant skin'
+      },
+      4: {
+        name: 'Glow & Flow',
+        link: 'https://take.app/blissonwheels/c/cmaxt5xp20000ie04mbpfrdto',
+        benefit: 'classic facial plus a soothing head massage'
+      },
+      5: {
+        name: 'Prestige Pamper',
+        link: 'https://take.app/blissonwheels/c/cmaxt5xp20000ie04mbpfrdto',
+        benefit: 'manicure/pedicure paired with express facial'
+      }
+    };
+
+    // Utility to append messages
+    function appendMessage(who, text, isHTML = false) {
+      const div = document.createElement('div');
+      div.className = `msg ${who}`;
+      if (isHTML) div.innerHTML = text;
+      else div.textContent = text;
+      chatWindow.appendChild(div);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+
+    // Initial greeting & menu
+    function showMenu() {
+      const menu = Object.entries(products)
+        .map(([num, p]) => `<strong>${num}.</strong> ${p.name}`)
+        .join('<br>');
+      appendMessage('bot',
+        `Hello! 👋 Welcome to Bliss on Wheels.\n` +
+        `Here are our top packages:\n${menu}\n\n` +
+        `Please enter the <em>number</em> of the package you’d like to book.`
+      , true);
+    }
+
+    // Recognize greetings
+    const greetingRegex = /^(hi|hello|hey|good morning|good day|good evening)\b/i;
+
+    // Handle user input
+    function handleInput(text) {
+      const lower = text.trim().toLowerCase();
+
+      // Greeting
+      if (greetingRegex.test(lower)) {
+        appendMessage('bot', 'Hello there!😊');
+        showMenu();
+        return;
+      }
+
+      // Numeric selection
+      if (/^[1-5]$/.test(lower)) {
+        const choice = parseInt(lower);
+        const {name, link, benefit} = products[choice];
+        appendMessage('bot',
+          `Great choice! Here’s your link for <strong>${name}</strong>:<br>` +
+          `<a href="${link}" target="_blank">${link}</a><br><br>` +
+          `This package ${benefit}.` +
+          `\n\nIs there anything else I can help you with?`,
+          true
+        );
+        return;
+      }
+
+      // Fallback for unrecognized
+      appendMessage('bot',
+        `I’m sorry, I didn’t quite catch that. If you need further assistance, please email us at ` +
+        `<a href="mailto:blissonwheelsmobile@protonmail.com">blissonwheelsmobile@protonmail.com</a>.`
+      , true);
+    }
+
+    // Event listeners
+    sendBtn.addEventListener('click', () => {
+      const text = inputEl.value.trim();
+      if (!text) return;
+      appendMessage('user', text);
+      inputEl.value = '';
+      setTimeout(() => handleInput(text), 300);
+    });
+    inputEl.addEventListener('keypress', e => {
+      if (e.key === 'Enter') sendBtn.click();
+    });
+
+    // Launch the chat
+    document.addEventListener('DOMContentLoaded', () => {
+      showMenu();
+    });
+  </script>
+</body>
+</html>
