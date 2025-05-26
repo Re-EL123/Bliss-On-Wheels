@@ -8,248 +8,217 @@
   <!-- Google Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins&display=swap">
 
-  <!-- Refined Calm & Professional Styles -->
+  <!-- iOS-Style Variables & Animations -->
   <style>
     :root {
-      /* Soft neutrals & subtle accents */
-      --bg: #fafafa;
-      --white: #ffffff;
-      --light-grey: #f0f0f0;
-      --soft-mint: #d7ebdf;
-      --soft-peach: #fcebea;
-      --text-dark: #333333;
-      --text-light: #555555;
-      --radius: 12px;
-      --shadow-light: 0 4px 12px rgba(0,0,0,0.05);
-      --section-padding-vertical: 4rem;
-      --section-padding-horizontal: 2rem;
+      --mint: #BFE3CE;
+      --peach: #FCD3CC;
+      --light-white: rgba(255,255,255,0.85);
+      --bg-gradient: linear-gradient(135deg, #FCD3CC 0%, #BFE3CE 100%);
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --dark: #1f2e2e;
+      --radius: 20px;
+      --shadow: 0 12px 30px rgba(0,0,0,0.08);
+      --section-padding-vertical: 8rem;
+      --section-padding-horizontal: 4rem;
+      --transition-smooth: all 0.4s ease-out;
     }
-
-    /* Reset & base */
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overscroll-behavior-y: contain; }
     body {
-      margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: var(--bg);
-      color: var(--text-dark);
-      line-height: 1.6;
+      background: var(--bg-gradient);
+      color: #333;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      padding: 3rem 0;
     }
-    h1, h2, h3 {
-      font-family: 'Playfair Display', serif;
-      color: var(--text-dark);
-      margin-bottom: 1rem;
-      line-height: 1.2;
-    }
-    a {
-      color: var(--text-dark);
-      text-decoration: none;
-    }
-    a:hover { text-decoration: underline; }
+    h1,h2,h3 { font-family: 'Playfair Display', serif; margin-bottom: 1rem; color: var(--dark); }
+    p { line-height: 1.6; }
+    a { color: var(--dark); text-decoration: none; transition: var(--transition-smooth); }
+    a:hover { opacity: 0.8; }
     button, .cta-btn {
-      font-family: inherit;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
+      font-weight: bold;
+      border: none; cursor: pointer;
       border-radius: var(--radius);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.3s cubic-bezier(.68,-0.55,.27,1.55), var(--transition-smooth);
+      touch-action: manipulation;
     }
-    button:hover, .cta-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-light);
-    }
-    button:active, .cta-btn:active {
-      transform: translateY(0);
-      box-shadow: none;
-    }
+    button:active, .cta-btn:active { transform: scale(0.9); }
+    button:hover, .cta-btn:hover { transform: scale(1.03); }
 
-    /* Layout wrappers */
     header, section, footer {
       opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.6s ease-out forwards;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease-out forwards;
     }
-    @keyframes fadeInUp {
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+    @keyframes bounceIn {
+      0% { transform: translateY(-100%); }
+      60% { transform: translateY(10%); }
+      100% { transform: translateY(0); }
     }
 
     /* HEADER */
     header {
-      text-align: center;
-      padding: 4rem 2rem;
-      background: var(--white);
       position: relative;
+      text-align: center;
+      padding: 6rem 3rem;
+      background: url('assets/header-illustration.png') center/cover no-repeat;
+      color: #fff;
+      backdrop-filter: blur(8px);
+      overflow: hidden;
+      margin-bottom: 3rem;
     }
-    .logo { width: 120px; margin-bottom: 1.5rem; }
-    header h1 { font-size: 2.5rem; color: var(--text-dark); }
-    header p {
-      font-size: 1.125rem;
-      color: var(--text-light);
-      margin-bottom: 2rem;
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url('assets/header-bg.jpg') center/cover no-repeat;
+      opacity: 0.3;
+      z-index: 0;
     }
-    .cta-btn {
-      background: var(--soft-mint);
-      color: var(--text-dark);
-      padding: 0.75rem 1.75rem;
-      font-size: 1rem;
-    }
+    header > * { position: relative; z-index: 1; animation: bounceIn 1s ease-out; }
+    .logo { width: 150px; margin-bottom: 2rem; }
+    .cta-btn { display: inline-block; background: var(--peach); padding: 1rem 2.5rem; color: var(--dark); font-size: 1.1rem; }
 
-    /* NAVIGATION */
+    /* NAV */
     nav {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 1.5rem;
-      background: var(--white);
-      padding: 1rem 2rem;
-      box-shadow: var(--shadow-light);
+      gap: 2rem;
+      background-color: var(--light-white);
+      backdrop-filter: blur(12px);
+      padding: 1.5rem 2rem;
       position: sticky;
       top: 0;
       z-index: 100;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 3rem;
     }
-    nav a {
-      font-weight: 500;
-      padding: 0.5rem 1rem;
-      border-radius: var(--radius);
-      transition: background 0.2s;
-    }
-    nav a:hover {
-      background: var(--light-grey);
-    }
+    nav a { font-weight: 600; padding: 0.5rem 1rem; border-radius: var(--radius); }
+    nav a:hover { background: var(--peach); }
 
-    /* SECTION WRAPPER */
+    /* SECTIONS */
     section {
+      background: var(--card-bg);
       padding: var(--section-padding-vertical) var(--section-padding-horizontal);
-      max-width: 1000px;
-      margin: 0 auto;
-      background: var(--white);
+      max-width: 1100px;
+      margin: 0 auto 3rem;
       border-radius: var(--radius);
-      box-shadow: var(--shadow-light);
-      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
     }
-    section h2 {
-      border-bottom: 2px solid var(--light-grey);
-      padding-bottom: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
-    section p { color: var(--text-light); }
+    section h2 { margin-bottom: 2rem; }
 
     /* GALLERY */
     .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;
     }
     .gallery img {
-      width: 100%;
       border-radius: var(--radius);
-      box-shadow: var(--shadow-light);
+      box-shadow: var(--shadow);
+      width: 100%;
+      max-width: calc(50% - 2rem);
+      object-fit: cover;
+      animation: bounceIn 0.8s ease-out;
     }
 
-    /* PACKAGES */
+    /* PACKAGE GRID */
     .package-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-    }
-    .package {
-      background: var(--light-grey);
-      padding: 1.5rem;
-      border-radius: var(--radius);
+      gap: 3rem;
       text-align: center;
     }
-    .package-img {
-      width: 100%;
+    .package {
+      background: var(--light-white);
+      padding: 2.5rem 2rem;
       border-radius: var(--radius);
-      margin-bottom: 1rem;
-      box-shadow: var(--shadow-light);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(6px);
+      transition: var(--transition-smooth);
+    }
+    .package:hover { transform: translateY(-5px); }
+    .package img.package-img {
+      width: 100%;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+      border-radius: var(--radius);
     }
     .book-btn {
-      background: var(--soft-peach);
-      color: var(--text-dark);
-      padding: 0.75rem 1.5rem;
-      margin-top: 0.75rem;
+      background: var(--mint);
+      padding: 1rem 2rem;
+      margin-top: 1rem;
     }
 
-    /* TIPS GRID */
+    /* TIPS CARDS */
     .tips-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
+      gap: 2.5rem;
     }
     .tip-card {
-      background: var(--light-grey);
-      padding: 1rem;
+      background: var(--light-white);
       border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
       display: flex;
-      align-items: start;
       gap: 1rem;
-      box-shadow: var(--shadow-light);
+      align-items: flex-start;
+      backdrop-filter: blur(6px);
+      transition: var(--transition-smooth);
     }
-    .tip-card img {
-      width: 50px;
-      height: 50px;
-      object-fit: cover;
-      border-radius: var(--radius);
-    }
-    .tip-card p { color: var(--text-light); }
+    .tip-card:hover { transform: translateY(-3px); }
+    .tip-card img { width: 60px; height: 60px; }
+    .tip-card p { line-height: 1.5; }
 
     /* REVIEWS */
     .review-card {
-      background: var(--light-grey);
-      padding: 1.5rem;
+      background: var(--light-white);
       border-radius: var(--radius);
-      box-shadow: var(--shadow-light);
-      margin-bottom: 1rem;
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(6px);
+      transition: var(--transition-smooth);
     }
-    .review-card p { margin-bottom: 0.5rem; }
-    .review-btn {
-      background: var(--soft-mint);
-      color: var(--text-dark);
-      padding: 0.75rem 1.5rem;
-      display: inline-block;
-    }
+    .review-card:hover { transform: translateY(-3px); }
+    .review-btn { background: var(--peach); padding: 1rem 2rem; margin-top: 1rem; }
 
     /* SHOP & POSTS */
-    #shop .tip-card {
-      justify-content: center;
-      text-align: center;
-    }
-
+    #shop .tips-grid .tip-card { flex-direction: column; text-align: center; }
+    
     /* CONTACT */
-    #contact p, #contact a {
-      color: var(--text-light);
-      margin-bottom: 0.5rem;
-    }
+    #contact p, #contact a { margin-bottom: 0.5rem; }
 
     /* FOOTER */
     footer {
-      background: var(--text-dark);
-      color: var(--white);
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
+      background: var(--dark);
+      color: #fff;
+      padding: 4rem 2rem;
+      font-size: 1rem;
+      text-align: left;
+      border-top: 4px solid var(--mint);
     }
     .footer-nav {
+      max-width: 1100px;
+      margin: 0 auto 2rem;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 2.5rem;
     }
-    .footer-nav h3 {
-      margin-bottom: 0.5rem;
-      color: var(--soft-peach);
-    }
-    .footer-nav a { color: var(--white); }
-    .footer-nav a:hover { text-decoration: underline; }
-    .footer-copy {
-      text-align: center;
-      color: var(--light-grey);
-    }
+    .footer-nav h3 { margin-bottom: 1rem; color: var(--peach); }
+    .footer-nav ul { list-style: none; }
+    .footer-nav li { margin-bottom: 0.5rem; }
+    .footer-nav a { color: #fff; transition: var(--transition-smooth); }
+    .footer-nav a:hover { opacity: 0.8; }
+    .footer-copy { text-align: center; margin-top: 3rem; font-size: 0.9rem; }
   </style>
-  <!-- CSS_ADSBLOCK_START -->
-  <link rel="stylesheet" href="https://adblockers.opera-mini.net/css_block/default-domainless.css" />
-  <!-- CSS_ADSBLOCK_END -->
+<!-- CSS_ADSBLOCK_START -->
+<link rel="stylesheet" href="https://adblockers.opera-mini.net/css_block/default-domainless.css" />
+<!-- CSS_ADSBLOCK_END -->
 </head>
 <body>
   <!-- HEADER -->
@@ -275,17 +244,10 @@
   <!-- ABOUT -->
   <section id="about">
     <h2>About Us</h2>
-    <p>Welcome to Bliss on Wheels — your sanctuary of relaxation on the move.
-
-Founded with the vision of bringing luxury wellness experiences directly to your doorstep, Bliss on Wheels is a premium mobile spa service designed to help you unwind, recharge, and reconnect with yourself, wherever you are. Whether you're at home, in the office, or hosting a special event, we deliver high-quality spa treatments in the comfort and convenience of your chosen space.
-
-Our team of trained professionals is passionate about holistic well-being and dedicated to creating a calming, personalized experience for each client. We specialize in a variety of services including therapeutic massages, rejuvenating facials, soothing body treatments, and customized pamper sessions tailored to your needs.
-
-At Bliss on Wheels, we believe that self-care is not a luxury — it’s a lifestyle. That’s why we’ve made it our mission to remove the barriers to wellness by providing spa-quality services without the need for travel, traffic, or stress.
-
-We come to you, bringing not only top-tier products and expert touch, but also the ambiance and tranquillity of a traditional spa — all in your own space.
-
-Discover the bliss of convenience. Discover the bliss of care. Discover Bliss on Wheels.</p>
+    <p>Welcome to Bliss on Wheels — your sanctuary of relaxation on the move.<br><br>
+    Founded with the vision of bringing luxury wellness experiences directly to your doorstep, Bliss on Wheels is a premium mobile spa service designed to help you unwind, recharge, and reconnect with yourself, wherever you are. Whether you're at home, in the office, or hosting a special event, we deliver high-quality spa treatments in the comfort and convenience of your chosen space.</p>
+    <p>Our team of trained professionals is passionate about holistic well-being and dedicated to creating a calming, personalized experience for each client. We specialize in a variety of services including therapeutic massages, rejuvenating facials, soothing body treatments, and customized pamper sessions tailored to your needs.</p>
+    <p>At Bliss on Wheels, we believe that self-care is not a luxury — it’s a lifestyle. That’s why we’ve made it our mission to remove the barriers to wellness by providing spa-quality services without the need for travel, traffic, or stress. Discover the bliss of convenience. Discover the bliss of care. Discover Bliss on Wheels.</p>
   </section>
 
   <!-- GALLERY -->
@@ -307,33 +269,32 @@ Discover the bliss of convenience. Discover the bliss of care. Discover Bliss on
       <div class="package">
         <img class="package-img" src="assets/tranquility-touch.jpg" alt="Tranquility Touch">
         <h3>Tranquil Tides</h3>
-        <p>Duration:30 min Back, Neck & Shoulder Massage
-– 30 min Reflexology
-– 30 min Balinese/Indian Head Massage</p>
+        <p>Duration: 30 min Back, Neck & Shoulder Massage<br>
+        – 30 min Reflexology<br>
+        – 30 min Balinese/Indian Head Massage</p>
         <p><strong>R999</strong></p>
         <button class="book-btn" onclick="window.open('https://take.app/blissonwheels/c/cmaxt5xp20000ie04mbpfrdto','_blank')">Book Now</button>
       </div>
       <div class="package">
         <img class="package-img" src="assets/glow-go-facial.jpg" alt="Glow & Go Facial">
         <h3>Ember Embrace</h3>
-        <p>Duration: 2 hours
-• Includes:
-– 90 min Hot Stone Massage
-– Foot Scrub & Warm Foot Soak
-– Hot Stone Foot Massage
-Perfect for chilly days!</p>
+        <p>Duration: 2 hours<br>
+        • Includes:<br>
+        – 90 min Hot Stone Massage<br>
+        – Foot Scrub & Warm Foot Soak<br>
+        – Hot Stone Foot Massage</p>
         <p><strong>R1150</strong></p>
         <button class="book-btn" onclick="window.open('https://take.app/blissonwheels/c/cmaxt5xp20000ie04mbpfrdto','_blank')">Book Now</button>
       </div>
       <div class="package">
         <img class="package-img" src="assets/zen-package.jpg" alt="Zen Package">
         <h3>Celestial Sanctuary</h3>
-        <p>Duration: 2 ½ hours
-• Includes:
-– 90 min Aromatherapy Full-Body Massage
-– Full-Body Exfoliation
-– Express Glow Facial
-– Add-On: Free Head Massage</p>
+        <p>Duration: 2½ hours<br>
+        • Includes:<br>
+        – 90 min Aromatherapy Full-Body Massage<br>
+        – Full-Body Exfoliation<br>
+        – Express Glow Facial<br>
+        – Add-On: Free Head Massage</p>
         <p><strong>R1350</strong></p>
         <button class="book-btn" onclick="window.open('https://take.app/blissonwheels/c/cmaxt5xp20000ie04mbpfrdto','_blank')">Book Now</button>
       </div>
@@ -341,27 +302,27 @@ Perfect for chilly days!</p>
       <div class="package">
         <img class="package-img" src="assets/detox-delight.jpg" alt="Detox Delight">
         <h3>Glow & Flow</h3>
-        <p>Duration: 90 minutes
-• Includes:
-– Classic Facial
-– 30 min Back, Neck & Shoulder Massage
-– Add-On: Free Head Massage</p>
+        <p>Duration: 90 minutes<br>
+        • Includes:<br>
+        – Classic Facial<br>
+        – 30 min Back, Neck & Shoulder Massage<br>
+        – Add-On: Free Head Massage</p>
         <p><strong>R850</strong></p>
         <button class="book-btn" onclick="window.open('https://take.app/blissonwheels/c/cmaxt5xp20000ie04mbpfrdto','_blank')">Book Now</button>
       </div>
       <div class="package">
         <img class="package-img" src="assets/urban-escape.jpg" alt="Urban Escape">
         <h3>Prestige Pamper</h3>
-        <p>Duration: 2 h 15 min
-• Includes:
-– Full Spa Manicure or Pedicure
-– 40 min Back, Neck & Shoulder Massage
-– Express Balanced Facial</p>
+        <p>Duration: 2h 15min<br>
+        • Includes:<br>
+        – Full Spa Manicure or Pedicure<br>
+        – 40 min Back, Neck & Shoulder Massage<br>
+        – Express Balanced Facial</p>
         <p><strong>R1340</strong></p>
         <button class="book-btn" onclick="window.open('https://take.app/blissonwheels/c/cmaxt5xp20000ie04mbpfrdto','_blank')">Book Now</button>
       </div>
     </div>
-    <div style="text-align:center; margin-top:2rem;">
+    <div style="text-align:center; margin-top:2.5rem;">
       <a href="https://take.app/blissonwheels" class="cta-btn">View All Spa Products</a>
     </div>
   </section>
@@ -376,7 +337,7 @@ Perfect for chilly days!</p>
 
   <!-- LIFESTYLE TIPS -->
   <section id="lifestyle">
-    <h2>Lifecycle & Wellness Tips</h2>
+    <h2>Lifestyle & Wellness Tips</h2>
     <div class="tips-grid" id="lifeTips">
       <p>Loading lifestyle tips...</p>
     </div>
@@ -404,7 +365,7 @@ Perfect for chilly days!</p>
     <div class="tips-grid">
       <div class="tip-card">
         <img src="assets/essential-oil.png" alt="Product">
-        <p><strong>Now Available:</strong> Explore our spa essentials & wellness products now in our store.</p>
+        <p><strong>Now Available:</strong> Explore our spa essentials & wellness products in our store.</p>
       </div>
       <div class="tip-card">
         <img src="assets/spa-care.png" alt="Product Tip">
@@ -422,7 +383,7 @@ Perfect for chilly days!</p>
     <h2>Contact Us</h2>
     <p>Email: <a href="mailto:blissonwheelsmobile@protonmail.com">blissonwheelsmobile@protonmail.com</a></p>
     <p>Phone: Temporarily Unavailable</p>
-    <p>Facebook: <a href="https://www.facebook.com/profile.php?id=61576628000198" target="_blank">@bliss on wheels mobile spa</a></p>
+    <p>Facebook: <a href="https://www.facebook.com/profile.php?id=61576628000198" target="_blank">@blissonwheelsmobile</a></p>
   </section>
 
   <!-- FOOTER -->
@@ -464,8 +425,8 @@ Perfect for chilly days!</p>
       "short_name": "BlissSPA",
       "start_url": ".",
       "display": "standalone",
-      "background_color": "#ffffff",
-      "theme_color": "#d7ebdf",
+      "background_color": "#FCD3CC",
+      "theme_color": "#BFE3CE",
       "icons": [
         {"src":"assets/logo192.png","sizes":"192x192","type":"image/png"},
         {"src":"assets/logo512.png","sizes":"512x512","type":"image/png"}
@@ -477,7 +438,7 @@ Perfect for chilly days!</p>
     link.rel = 'manifest'; link.href = mfURL;
     document.head.appendChild(link);
 
-    // Service Worker
+    // Service Worker via Blob
     if ('serviceWorker' in navigator) {
       const swCode = `
         const CACHE = 'bliss-cache-v1';
@@ -499,7 +460,7 @@ Perfect for chilly days!</p>
       navigator.serviceWorker.register(swURL);
     }
 
-    // Dynamic Tips Loading (unchanged)
+    // Fetch Beauty Tips from API Ninjas
     async function loadBeauty() {
       const container = document.getElementById('beautyTips');
       try {
@@ -521,6 +482,7 @@ Perfect for chilly days!</p>
       }
     }
 
+    // Fetch Lifestyle Advice
     async function loadLifestyle() {
       const container = document.getElementById('lifeTips');
       container.innerHTML = '';
@@ -530,7 +492,7 @@ Perfect for chilly days!</p>
           const slip = await res.json();
           const card = document.createElement('div'); card.className='tip-card';
           card.innerHTML = `
-            <img src="assets/lifestyle.png" alt="lifestyle">
+            <img src="assets/lifestyle.png" alt="advice">
             <p>${slip.slip.advice}</p>
           `;
           container.appendChild(card);
@@ -541,6 +503,7 @@ Perfect for chilly days!</p>
       }
     }
 
+    // Initialize tips
     document.addEventListener('DOMContentLoaded', () => {
       loadBeauty();
       loadLifestyle();
