@@ -19,42 +19,34 @@
       --radius: 16px;
       --shadow: 0 8px 20px rgba(0,0,0,0.1);
       --section-padding-vertical: 6rem;
-      --section-padding-horizontal: 3rem;
+      --section-padding-horizontal: 2rem;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; overscroll-behavior-y: contain; }
     body {
+      margin: 0; padding: 2rem 0;
       font-family: 'Poppins', sans-serif;
       background: var(--bg-gradient);
       color: #333;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
-      padding: 2rem 0;
-      -webkit-overflow-scrolling: touch;
     }
-    h1,h2,h3 { font-family: 'Playfair Display', serif; margin-bottom: 1rem; }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; margin-bottom: 1rem; color: var(--dark); }
     a { color: var(--dark); text-decoration: none; }
     button, .cta-btn {
-      font-weight: bold;
-      border: none; cursor: pointer;
-      border-radius: var(--radius);
-      transition: transform 0.3s cubic-bezier(.68,-0.55,.27,1.55), box-shadow 0.3s ease;
+      font-weight: bold; border: none; cursor: pointer;
+      border-radius: var(--radius); transition: transform .3s cubic-bezier(.68,-.55,.27,1.55);
       touch-action: manipulation;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(6px);
     }
-    button:active, .cta-btn:active { transform: scale(0.9); }
-    button:hover, .cta-btn:hover { 
-      transform: scale(1.05);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
-    }
+    button:active, .cta-btn:active { transform: scale(.9); }
+    button:hover, .cta-btn:hover { transform: scale(1.05); }
 
+    /* Fade-in sections */
     header, section, footer {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 0.8s ease-out forwards;
+      opacity: 0; transform: translateY(30px);
+      animation: fadeInUp .8s ease-out forwards;
     }
-    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInUp { to { opacity:1; transform: translateY(0); } }
     @keyframes bounceIn {
       0% { transform: translateY(-100%); }
       60% { transform: translateY(10%); }
@@ -63,141 +55,126 @@
 
     /* HEADER */
     header {
-      position: relative;
-      text-align: center;
-      padding: 6rem 3rem;
+      position: relative; text-align: center;
+      padding: 6rem 2rem; color: #fff;
       background: url('assets/header-illustration.png') center/cover no-repeat;
-      color: #fff;
-      backdrop-filter: blur(8px);
-      overflow: hidden;
-      margin-bottom: 2rem;
+      backdrop-filter: blur(8px); overflow: hidden; margin-bottom: 2rem;
     }
     header::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      content: ""; position: absolute; inset: 0;
       background: url('assets/header-bg.jpg') center/cover no-repeat;
-      opacity: 0.3;
-      z-index: 0;
+      opacity: .3; z-index: 0;
     }
     header > * { position: relative; z-index: 1; animation: bounceIn 1s ease-out; }
     .logo { width: 140px; margin-bottom: 2rem; }
-    .cta-btn { display: inline-block; background: var(--peach); padding: 1rem 2rem; color: var(--dark); }
-    
+    .cta-btn { display:inline-block; background: var(--peach); padding:1rem 2rem; color:var(--dark); }
+
     /* NAV */
     nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem 2.5rem;
-      background-color: #ffffffbb;
-      backdrop-filter: blur(10px);
-      padding: 1rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid #eee;
-      margin-bottom: 2rem;
+      display:flex; flex-wrap:wrap; justify-content:center; gap:1.5rem;
+      background-color: #ffffffbb; backdrop-filter: blur(10px);
+      padding:1rem 2rem; position: sticky; top:0; z-index:100;
+      border-bottom:1px solid #eee; margin-bottom:2rem;
     }
-    nav a { font-weight: 600; padding: 0.5rem 1rem; border-radius: var(--radius); }
-    nav a:hover { background: var(--card-bg); }
-    nav a:active { transform: scale(0.9); }
+    nav a { font-weight:600; padding:.5rem 1rem; border-radius:var(--radius); }
+    nav a:hover { background:rgba(255,255,255,.6); }
 
-    /* SECTIONS */
+    /* GENERIC SECTION STYLING */
     section {
       padding: var(--section-padding-vertical) var(--section-padding-horizontal);
-      max-width: 1200px;
-      margin: 0 auto;
-      border-bottom: 1px solid #eee;
+      max-width: 1200px; margin: 0 auto; border-bottom:1px solid #eee;
     }
-    section:not(:first-of-type) { margin-top: 2rem; }
-    section h2 { margin-bottom: 1.5rem; color: var(--dark); text-align: center; }
-    @media (max-width: 768px) {
-      section { padding: 4rem 2rem; }
-      header { padding: 4rem 1.5rem; }
-    }
+    section:not(:first-of-type) { margin-top:2rem; }
+    section h2 { text-align:center; }
 
     /* GALLERY */
     .gallery {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem;
+      display:flex; flex-wrap:wrap; justify-content:center; gap:1.5rem;
     }
     .gallery img {
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      width: 100%;
-      max-width: calc(50% - 1.5rem);
-      object-fit: cover;
-      animation: bounceIn 0.8s ease-out;
-    }
-    @media (max-width: 600px) {
-      .gallery img { max-width: 100%; }
+      width:100%; max-width:calc(50% - 1.5rem);
+      border-radius:var(--radius); box-shadow:var(--shadow);
+      object-fit:cover; animation:bounceIn .8s ease-out;
     }
 
     /* PACKAGE GRID */
     .package-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2.5rem;
-      text-align: center;
+      display:grid; gap:2rem;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      text-align:center;
     }
     .package {
-      background: var(--card-bg);
-      padding: 3rem 1.5rem;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(6px);
-      animation: bounceIn 0.8s ease-out;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      background:var(--card-bg); padding:2.5rem;
+      border-radius:var(--radius); box-shadow:var(--shadow);
+      backdrop-filter:blur(6px); animation:bounceIn .8s ease-out;
     }
-    .package-img {
-      width: 100%;
-      object-fit: cover;
-      margin-bottom: 1.5rem;
-      border-radius: var(--radius);
-    }
-    .book-btn { background: var(--mint); color: var(--dark); padding: 1rem 2rem; margin-top: 1rem; }
+    .package img { width:100%; object-fit:cover; margin-bottom:1.5rem; }
+    .book-btn { background:var(--mint); padding:1rem 2rem; }
 
-    /* SPA & HOLISTIC INSIGHTS */
-    #spa-benefits {
-      text-align: center;
+    /* WELLNESS SLIDESHOW */
+    #wellness { text-align:center; }
+    .slideshow {
+      position:relative; max-width:800px; margin:2rem auto;
+      background: var(--card-bg); padding:2rem; border-radius:var(--radius);
+      backdrop-filter:blur(6px); box-shadow:var(--shadow);
     }
-    #spa-benefits .slider {
-      position: relative;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem;
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(6px);
+    .slide {
+      display:none; font-size:1.1rem; line-height:1.6;
     }
-    #spa-benefits .slide {
-      font-size: 1.25rem;
-      line-height: 1.6;
-      min-height: 120px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.8s ease;
+    .slide.active { display:block; }
+    .slide-controls {
+      margin-top:1.5rem; display:flex; justify-content:center; gap:1rem;
     }
-    #spa-benefits .slide.active {
-      opacity: 1;
-    }
+    .slide-controls button { background:var(--peach); padding:.5rem 1rem; }
 
-    /* REVIEWS & SHOP & CONTACT remain unchanged */
+    /* REVIEWS */
+    #reviews .review-card {
+      background:var(--card-bg); padding:2rem; margin-bottom:2rem;
+      border-radius:var(--radius); box-shadow:var(--shadow);
+      backdrop-filter:blur(6px); animation:bounceIn .8s ease-out;
+    }
+    .review-btn { background:var(--peach); padding:1rem 2rem; display:block; margin:1rem auto; }
 
-    /* FOOTER remains unchanged */
+    /* UPDATES */
+    #shop h2 { text-align:center; }
+    .tips-grid {
+      display:grid; gap:1.5rem;
+      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+      margin-top:1rem;
+    }
+    .tip-card {
+      background:var(--card-bg); padding:1.5rem;
+      border-radius:var(--radius); box-shadow:var(--shadow);
+      backdrop-filter:blur(6px); animation:bounceIn .6s ease-out;
+      text-align:center;
+    }
+    .tip-card img { width:60px; height:60px; margin-bottom:.5rem; }
+
+    /* CONTACT */
+    #contact p, #contact a { text-align:center; }
+
+    /* FOOTER */
+    footer {
+      background:var(--dark); color:#fff; padding:3rem 1rem;
+      font-size:1rem; text-align:left; border-top:4px solid var(--mint);
+    }
+    .footer-nav {
+      max-width:1200px; margin:0 auto 2rem;
+      display:grid; gap:2rem;
+      grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
+    }
+    .footer-nav h3 { color:var(--peach); }
+    .footer-nav a { color:#fff; }
+    .footer-copy { text-align:center; margin-top:2rem; }
+
+    /* RESPONSIVE TWEAKS */
+    @media(max-width:600px) {
+      .gallery img { max-width:100%; }
+      nav { gap:1rem; }
+    }
   </style>
-  <!-- CSS_ADSBLOCK_START -->
-  <link rel="stylesheet" href="https://adblockers.opera-mini.net/css_block/default-domainless.css" />
-  <!-- CSS_ADSBLOCK_END -->
 </head>
 <body>
-
   <!-- HEADER -->
   <header>
     <img src="assets/logo.png" alt="Bliss on Wheels Logo" class="logo">
@@ -211,26 +188,16 @@
     <a href="#about">About</a>
     <a href="#gallery">Gallery</a>
     <a href="#packages">Packages</a>
-    <a href="#spa-benefits">Spa Insights</a>
+    <a href="#wellness">Wellness</a>
     <a href="#reviews">Reviews</a>
-    <a href="#shop">From Bliss on Wheels</a>
+    <a href="#shop">Updates</a>
     <a href="#contact">Contact</a>
   </nav>
 
   <!-- ABOUT -->
   <section id="about">
     <h2>About Us</h2>
-    <p>Welcome to Bliss on Wheels — your sanctuary of relaxation on the move.
-
-Founded with the vision of bringing luxury wellness experiences directly to your doorstep, Bliss on Wheels is a premium mobile spa service designed to help you unwind, recharge, and reconnect with yourself, wherever you are. Whether you're at home, in the office, or hosting a special event, we deliver high-quality spa treatments in the comfort and convenience of your chosen space.
-
-Our team of trained professionals is passionate about holistic well-being and dedicated to creating a calming, personalized experience for each client. We specialize in a variety of services including therapeutic massages, rejuvenating facials, soothing body treatments, and customized pamper sessions tailored to your needs.
-
-At Bliss on Wheels, we believe that self-care is not a luxury — it’s a lifestyle. That’s why we’ve made it our mission to remove the barriers to wellness by providing spa-quality services without the need for travel, traffic, or stress.
-
-We come to you, bringing not only top-tier products and expert touch, but also the ambiance and tranquillity of a traditional spa — all in your own space.
-
-Discover the bliss of convenience. Discover the bliss of care. Discover Bliss on Wheels.</p>
+    <p>Welcome to Bliss on Wheels — your sanctuary of relaxation on the move. Founded with the vision of bringing luxury wellness experiences directly to your doorstep, our mobile spa delivers therapeutic massages, rejuvenating facials, soothing body treatments, and customized pamper sessions in your own space. Self-care isn’t a luxury—it’s a lifestyle. Discover the bliss of care, wherever you are.</p>
   </section>
 
   <!-- GALLERY -->
@@ -248,19 +215,59 @@ Discover the bliss of convenience. Discover the bliss of care. Discover Bliss on
   <section id="packages">
     <h2>Featured Spa Packages</h2>
     <div class="package-grid">
-      <!-- Existing Packages (unchanged) -->
-      <!-- … -->
+      <!-- existing package cards (unchanged) -->
+      <div class="package">
+        <img class="package-img" src="assets/tranquility-touch.jpg" alt="Tranquility Touch">
+        <h3>Tranquil Tides</h3>
+        <p>Duration:30 min Back, Neck & Shoulder Massage<br>– 30 min Reflexology<br>– 30 min Balinese/Indian Head Massage</p>
+        <p><strong>R999</strong></p>
+        <button class="book-btn" onclick="window.open('https://take.app/blissonwheels/c/cmaxt5xp20000ie04mbpfrdto','_blank')">Book Now</button>
+      </div>
+      <div class="package">
+        <img class="package-img" src="assets/glow-go-facial.jpg" alt="Glow & Go Facial">
+        <h3>Ember Embrace</h3>
+        <p>Duration: 2 hours<br>• Includes:<br>– 90 min Hot Stone Massage<br>– Foot Scrub & Warm Foot Soak<br>– Hot Stone Foot Massage</p>
+        <p><strong>R1150</strong></p>
+        <button class="book-btn" onclick="window.open('https://take.app/blissonwheels/c/cmaxt5xp20000ie04mbpfrdto','_blank')">Book Now</button>
+      </div>
+      <div class="package">
+        <img class="package-img" src="assets/zen-package.jpg" alt="Zen Package">
+        <h3>Celestial Sanctuary</h3>
+        <p>Duration: 2½ hours<br>• Includes:<br>– 90 min Aromatherapy Full-Body Massage<br>– Full-Body Exfoliation<br>– Express Glow Facial<br>– Add-On: Free Head Massage</p>
+        <p><strong>R1350</strong></p>
+        <button class="book-btn" onclick="window.open('https://take.app/blissonwheels/c/cmaxt5xp20000ie04mbpfrdto','_blank')">Book Now</button>
+      </div>
+      <div class="package">
+        <img class="package-img" src="assets/detox-delight.jpg" alt="Detox Delight">
+        <h3>Glow & Flow</h3>
+        <p>Duration: 90 minutes<br>• Includes:<br>– Classic Facial<br>– 30 min Back, Neck & Shoulder Massage<br>– Add-On: Free Head Massage</p>
+        <p><strong>R850</strong></p>
+        <button class="book-btn" onclick="window.open('https://take.app/blissonwheels/c/cmaxt5xp20000ie04mbpfrdto','_blank')">Book Now</button>
+      </div>
+      <div class="package">
+        <img class="package-img" src="assets/urban-escape.jpg" alt="Urban Escape">
+        <h3>Prestige Pamper</h3>
+        <p>Duration: 2h15min<br>• Includes:<br>– Full Spa Manicure or Pedicure<br>– 40 min Back, Neck & Shoulder Massage<br>– Express Balanced Facial</p>
+        <p><strong>R1340</strong></p>
+        <button class="book-btn" onclick="window.open('https://take.app/blissonwheels/c/cmaxt5xp20000ie04mbpfrdto','_blank')">Book Now</button>
+      </div>
     </div>
     <div style="text-align:center; margin-top:2rem;">
       <a href="https://take.app/blissonwheels" class="cta-btn">View All Spa Products</a>
     </div>
   </section>
 
-  <!-- SPA & HOLISTIC INSIGHTS -->
-  <section id="spa-benefits">
-    <h2>Spa &amp; Holistic Insights</h2>
-    <div class="slider">
-      <!-- Slides will be injected here -->
+  <!-- WELLNESS & HEALING -->
+  <section id="wellness">
+    <h2>Wellness & Healing</h2>
+    <p>Explore the holistic benefits of spa treatments, chakra balancing, mindful breathing, and energy healing to awaken your inner calm and vitality.</p>
+    <div class="slideshow">
+      <!-- Slides will be injected by JS -->
+      <div id="slideContainer"></div>
+      <div class="slide-controls">
+        <button onclick="prevSlide()">Prev</button>
+        <button onclick="nextSlide()">Next</button>
+      </div>
     </div>
   </section>
 
@@ -280,9 +287,9 @@ Discover the bliss of convenience. Discover the bliss of care. Discover Bliss on
     </button>
   </section>
 
-  <!-- SHOP -->
+  <!-- UPDATES -->
   <section id="shop">
-    <h2>From Bliss on Wheels</h2>
+    <h2>Bliss on Wheels Updates</h2>
     <div class="tips-grid">
       <div class="tip-card">
         <img src="assets/essential-oil.png" alt="Product">
@@ -294,7 +301,7 @@ Discover the bliss of convenience. Discover the bliss of care. Discover Bliss on
       </div>
       <div class="tip-card">
         <img src="assets/candle.png" alt="Candle">
-        <p><strong>New Scents:</strong> Aromatherapy candles & calming essentials for your space. Shop now!</p>
+        <p><strong>New Scents:</strong> Aromatherapy candles & calming essentials for your space.</p>
       </div>
     </div>
   </section>
@@ -309,57 +316,70 @@ Discover the bliss of convenience. Discover the bliss of care. Discover Bliss on
 
   <!-- FOOTER -->
   <footer>
-    <!-- Unchanged footer nav & copy -->
     <div class="footer-nav">
-      <!-- … -->
+      <div>
+        <h3>Useful Links</h3>
+        <ul>
+          <li><a href="https://take.app/blissonwheels/c/cm9mbrir90000l804lkin81ku">Treatments</a></li>
+          <li><a href="https://take.app/blissonwheels/c/cmaxt5xp20000ie04mbpfrdto">Spa Packages</a></li>
+          <li><a href="https://take.app/blissonwheels/c/cm9mbqil70003l504s7zaduqh">Facials</a></li>
+          <li><a href="https://take.app/blissonwheels/c/cm9mbxlzj0008ju04vrihcz5c">Pedicure</a></li>
+          <li><a href="https://take.app/blissonwheels/c/cmaxw2rzx000glb043mz5t9vq">Waxing</a></li>
+          <li><a href="https://take.app/blissonwheels/c/cm9mc05hx0000kz04dbjblbcw">Nails</a></li>
+          <li><a href="https://take.app/blissonwheels/c/cmaxw4wa40006kv049b7ddrd0">Body Exfoliation</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p>Email: <a href="mailto:blissonwheelsmobile@protonmail.com">blissonwheelsmobile@protonmail.com</a></p>
+        <p>Phone: Temporarily Unavailable</p>
+      </div>
     </div>
     <p class="footer-copy">&copy; 2025 Bliss on Wheels. All rights reserved.</p>
   </footer>
 
-  <!-- PAWA + Service Worker Registration (unchanged) -->
+  <!-- PAWA + Service Worker -->
   <script>
-    // (your existing manifest + SW code here)
+    // Simple PWA manifest & SW omitted for brevity (unchanged)
 
-    // --- Spa & Holistic Insights Slideshow ---
-    (function(){
-      const categories = [
-        'Spa Benefit',
-        'Holistic Living Tip',
-        'Chakra Insight',
-        'Healing Practice',
-        'Breathing Technique'
-      ];
-      // build 500 posts
-      const posts = [];
-      categories.forEach(cat => {
-        for(let i=1; i<=100; i++){
-          posts.push(`${cat} ${i}`);
-        }
-      });
-      const slider = document.querySelector('#spa-benefits .slider');
-      // create slide elements
-      posts.slice(0,5).forEach((_,i)=>{
-        const div = document.createElement('div');
-        div.className = 'slide' + (i===0?' active':'');
-        slider.appendChild(div);
-      });
-      // cycling logic
-      let current = 0;
-      const total = posts.length;
-      setInterval(()=>{
-        // pick random post and slide index
-        const slideElems = slider.querySelectorAll('.slide');
-        slideElems[current % slideElems.length].classList.remove('active');
-        current = (current + 1) % slideElems.length;
-        const randomPost = posts[Math.floor(Math.random()*total)];
-        slideElems[current].textContent = randomPost;
-        slideElems[current].classList.add('active');
-      }, 4000);
-      // initialize first 5
-      slider.querySelectorAll('.slide').forEach((el, idx)=>{
-        el.textContent = posts[idx];
-      });
-    })();
+    // --- Wellness Slideshow Logic ---
+    const posts = Array.from({length:500}, (_,i)=>({
+      title: `Wellness Insight #${i+1}`,
+      content: `This is a tip about spa benefits, holistic living, chakra work, healing or breathing technique number ${i+1}.`
+    }));
+    let current = 0;
+
+    function renderSlide(idx) {
+      const container = document.getElementById('slideContainer');
+      container.innerHTML = '';
+      const slide = document.createElement('div');
+      slide.className = 'slide active';
+      slide.innerHTML = `<h3>${posts[idx].title}</h3><p>${posts[idx].content}</p>`;
+      container.appendChild(slide);
+    }
+
+    function nextSlide() {
+      current = Math.floor(Math.random()*posts.length);
+      renderSlide(current);
+    }
+    function prevSlide() {
+      // just another random
+      current = Math.floor(Math.random()*posts.length);
+      renderSlide(current);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderSlide(current);
+      // auto-advance every 8s
+      setInterval(nextSlide, 8000);
+    });
   </script>
 </body>
 </html>
