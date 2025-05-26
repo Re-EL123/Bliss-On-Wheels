@@ -349,11 +349,8 @@
   <script>
     // Simple PWA manifest & SW omitted for brevity (unchanged)
 
-    // --- Wellness Slideshow Logic ---
-    const posts = Array.from({length:500}, (_,i)=>({
-      title: `Wellness Insight #${i+1}`,
-      content: `This is a tip about spa benefits, holistic living, chakra work, healing or breathing technique number ${i+1}.`
-    }));
+    // --- Wellness Slideshow Logic (now fetching external JSON) ---
+    let posts = [];
     let current = 0;
 
     function renderSlide(idx) {
@@ -366,19 +363,26 @@
     }
 
     function nextSlide() {
-      current = Math.floor(Math.random()*posts.length);
+      current = Math.floor(Math.random() * posts.length);
       renderSlide(current);
     }
     function prevSlide() {
-      // just another random
-      current = Math.floor(Math.random()*posts.length);
+      current = Math.floor(Math.random() * posts.length);
       renderSlide(current);
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      renderSlide(current);
-      // auto-advance every 8s
-      setInterval(nextSlide, 8000);
+      fetch('wellness_posts.json')
+        .then(res => res.json())
+        .then(data => {
+          posts = data;
+          renderSlide(0);
+          setInterval(nextSlide, 8000);
+        })
+        .catch(() => {
+          const container = document.getElementById('slideContainer');
+          container.innerHTML = '<p>Unable to load wellness posts at this time.</p>';
+        });
     });
   </script>
 </body>
